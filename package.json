@@ -1,6 +1,6 @@
 {
   "name": "@blueflag/serverless-graphql-service",
-  "version": "0.0.0",
+  "version": "0.1.0-0",
   "description": "Service to handle graphql requests through serverless",
   "main": "index.js",
   "repository": "git@github.com:blueflag/serverless-graphql-service.git",
