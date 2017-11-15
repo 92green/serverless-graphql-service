@@ -1,9 +1,11 @@
 {
   "name": "@blueflag/serverless-graphql-service",
-  "version": "0.1.0-1",
+  "version": "0.1.0-2",
   "description": "Service to handle graphql requests through serverless",
   "main": "lib/index.js",
-  "files": ["lib"],
+  "files": [
+    "lib"
+  ],
   "repository": "git@github.com:blueflag/serverless-graphql-service.git",
   "author": "Dan Coates <dan.coates@blueflag.com.au>",
   "license": "MIT",
