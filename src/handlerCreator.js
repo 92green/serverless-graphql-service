@@ -28,6 +28,10 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
         lambdaContext: AWSLambdaContext,
         callback: AWSLambdaCallback
     ): Promise<void> => {
+        // lowercase headers (leaves existing headers too)
+        Object.keys(httpEvent.headers).forEach((key) => {
+            httpEvent.headers[key.toLowerCase()] = httpEvent.headers[key];
+        });
 
         try {
             const authorizationResult = await config.authorizeRequest(httpEvent, lambdaContext);
