@@ -22,9 +22,9 @@ jobs:
           - v1-dependencies-
 
       # Add blueflag npm registry
-      - run: echo "@blueflag:registry=https://$BLUEFLAG_NPM_REGISTRY_URL" >> ./.npmrc
-      - run: echo "always-auth=true" >> ./.npmrc
-      - run: echo "//$BLUEFLAG_NPM_REGISTRY_URL:_authToken=$BLUEFLAG_NPM_AUTH_TOKEN" >> ./.npmrc
+      - run: echo "@blueflag:registry=https://$BLUEFLAG_NPM_REGISTRY_URL" >> ~/.npmrc
+      - run: echo "always-auth=true" >> ~/.npmrc
+      - run: echo "//$BLUEFLAG_NPM_REGISTRY_URL:_authToken=$BLUEFLAG_NPM_AUTH_TOKEN" >> ~/.npmrc
 
       - run: yarn install
 
