@@ -32,7 +32,7 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
         lambdaContext.callbackWaitsForEmptyEventLoop = false;
 
         // lowercase headers (leaves existing headers too)
-        Object.keys(httpEvent.headers).forEach((key) => {
+        Object.keys(httpEvent.headers).forEach((key: string) => {
             httpEvent.headers[key.toLowerCase()] = httpEvent.headers[key];
         });
 
