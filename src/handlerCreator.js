@@ -28,6 +28,9 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
         lambdaContext: AWSLambdaContext,
         callback: AWSLambdaCallback
     ): Promise<void> => {
+        // Ensure that response happens right after callback
+        lambdaContext.callbackWaitsForEmptyEventLoop = false;
+
         // lowercase headers (leaves existing headers too)
         Object.keys(httpEvent.headers).forEach((key) => {
             httpEvent.headers[key.toLowerCase()] = httpEvent.headers[key];
