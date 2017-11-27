@@ -6,13 +6,15 @@ export type InputConfig = {
     rootValue: Object,
     authorizeRequest?: RequestAuthorizer,
     modifyResponse?: ResponseModifier,
-    buildContext?: ContextBuilder
+    buildContext?: ContextBuilder,
+    logErrors?: ErrorLogger
 };
 
 export type ConfigUpdate = {
     authorizeRequest?: RequestAuthorizer,
     modifyResponse?: ResponseModifier,
-    buildContext?: ContextBuilder
+    buildContext?: ContextBuilder,
+    logErrors?: ErrorLogger
 };
 
 export type MergedConfig = {
@@ -20,7 +22,8 @@ export type MergedConfig = {
     rootValue: Object,
     authorizeRequest: RequestAuthorizer,
     modifyResponse: ResponseModifier,
-    buildContext: ContextBuilder
+    buildContext: ContextBuilder,
+    logErrors: ErrorLogger
 };
 
 export type GraphqlRequestPayload = {
@@ -51,6 +54,8 @@ export type RequestHandler = (
     AWSLambdaContext,
     AWSLambdaCallback
 ) => Promise<void>;
+
+export type ErrorLogger = (err: Object) => void;
 
 export type AWSLambdaEvent = {
     body: string,

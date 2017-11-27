@@ -44,6 +44,11 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
 
             const {query, variables} = requestPayload;
             const result = await graphql(schema, query, rootValue, context, variables || {});
+
+            if(result.errors && result.errors.length > 0) {
+                result.errors.forEach((err) => config.logErrors(err));
+            }
+
             const formattedResult = errorFormatter(result);
 
             const response = {

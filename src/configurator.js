@@ -7,6 +7,7 @@ import type {
     MergedConfig,
     ResponseModifier,
     RequestAuthorizer,
+    ErrorLogger,
     ContextBuilder,
     RequestHandler
 } from './definitions';
@@ -17,13 +18,15 @@ export default class Configurator {
         const defaults = {
             authorizeRequest: () => Promise.resolve(),
             modifyResponse: (response) => Promise.resolve(response),
-            buildContext: () => Promise.resolve({})
+            buildContext: () => Promise.resolve({}),
+            logErrors: () => {}
         };
 
         this._config = {
             authorizeRequest: config.authorizeRequest || defaults.authorizeRequest,
             modifyResponse: config.modifyResponse || defaults.modifyResponse,
             buildContext: config.buildContext || defaults.buildContext,
+            logErrors: config.logErrors || defaults.logErrors,
             schema: config.schema,
             rootValue: config.rootValue
         };
@@ -46,6 +49,10 @@ export default class Configurator {
 
     buildContext(fn: ContextBuilder): Configurator {
         return this.unit({buildContext: fn});
+    }
+
+    logErrors(fn: ErrorLogger): Configurator {
+        return this.unit({logErrors: fn});
     }
 
     init(): RequestHandler {
