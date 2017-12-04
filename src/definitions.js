@@ -35,7 +35,7 @@ export type GraphqlRequestPayload = {
 export type RequestAuthorizer = (
     httpEvent: AWSLambdaEvent,
     lambdaContext: AWSLambdaContext
-) => Promise<void>;
+) => Promise<any>;
 
 export type ResponseModifier = (
     response: AWSLambdaPreResponse,
