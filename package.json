@@ -10,7 +10,7 @@
   "author": "Dan Coates <dan.coates@blueflag.com.au>",
   "license": "MIT",
   "scripts": {
-    "prepublish": "yarn run build",
+    "prepublish": "NODE_ENV=production yarn run build",
     "watch": "rm -rf lib && babel src --out-dir lib -w",
     "build": "rm -rf lib && babel src --out-dir lib",
     "flow": "blueflag-test flow",
