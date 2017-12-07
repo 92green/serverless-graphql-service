@@ -68,6 +68,8 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
                 ? err
                 : GromitError.wrap(err);
 
+            config.logErrors(gromitError);
+
             const response = {
                 ...baseResponse,
                 statusCode: gromitError.statusCode,
