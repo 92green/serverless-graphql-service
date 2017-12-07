@@ -69,3 +69,23 @@ test('decorateLoaders will create loaders that can accept immutable data as ids'
     t.is('1234', result1);
     t.is('1234', result2);
 });
+
+
+
+test('decorateLoaders will create loaders that can accept objects data as ids', async (t: Object): Promise<void> => {
+    const loaderFunction = sinon.spy((ids) => Promise.resolve(ids.map(ii => ii.id)));
+    const loaders = {
+        loaderModule: {
+            loaderFunction: loaderFunction
+        }
+    };
+
+    const decoratedLoaders = decorateLoaders({loaders});
+
+    const result1 = await decoratedLoaders.loaderModule.loaderFunction.load({id: '1234'});
+    const result2 = await decoratedLoaders.loaderModule.loaderFunction.load({id: '1234'});
+
+    t.true(loaderFunction.calledOnce);
+    t.is('1234', result1);
+    t.is('1234', result2);
+});
