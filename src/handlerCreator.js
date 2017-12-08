@@ -4,6 +4,7 @@ import {graphql} from 'graphql';
 import parseRequestBody from './requestParser';
 import {GromitError} from 'gromit';
 import errorFormatter from './errorFormatter';
+import stringify from 'json-stringify-safe';
 import type {
     RequestHandler,
     MergedConfig,
@@ -57,10 +58,9 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
             };
 
             const {body, ...modifiedResponse} = await config.modifyResponse(response, httpEvent, lambdaContext);
-
             callback(null, {
                 ...modifiedResponse,
-                body: JSON.stringify(body)
+                body: stringify(body)
             });
 
         } catch(err) {
@@ -79,10 +79,9 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
             };
 
             const {body, ...modifiedResponse} = await config.modifyResponse(response, httpEvent, lambdaContext);
-
             callback(null, {
                 ...modifiedResponse,
-                body: JSON.stringify(body)
+                body: stringify(body)
             });
         }
     };

@@ -29,7 +29,8 @@
   "dependencies": {
     "dataloader": "^1.3.0",
     "gromit": "^0.0.12",
-    "immutable": "^3.8.2"
+    "immutable": "^3.8.2",
+    "json-stringify-safe": "^5.0.1"
   },
   "peerDependencies": {
     "graphql": ">=0.10.3 <0.12.0"
