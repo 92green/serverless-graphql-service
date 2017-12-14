@@ -1,0 +1,17 @@
+{
+    "presets": [
+        ["blueflag", {
+            "config": {
+                "env": {
+                    "targets": {
+                        "node": "6.10"
+                    }
+                }
+            }
+        }]
+    ],
+    "plugins": [
+        ["proto-babel-plugin-extract-flow-types", {"outDir": "lib"}]
+    ],
+    "ignore": ["./lib"]
+}
