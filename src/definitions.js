@@ -53,7 +53,7 @@ export type RequestHandler = (
     AWSLambdaEvent,
     AWSLambdaContext,
     AWSLambdaCallback
-) => Promise<void>;
+) => Promise<AWSLambdaResponse>;
 
 export type ErrorLogger = (err: Object) => void;
 
