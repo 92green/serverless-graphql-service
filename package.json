@@ -1,6 +1,6 @@
 {
   "name": "@blueflag/serverless-graphql-service",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Service to handle graphql requests through serverless",
   "main": "lib/index.js",
   "files": [
