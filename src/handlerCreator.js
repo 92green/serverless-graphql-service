@@ -9,7 +9,7 @@ import type {
     RequestHandler,
     MergedConfig,
     AWSLambdaEvent,
-    AWSLambdaCallback,
+    AWSLambdaResponse,
     AWSLambdaContext
 } from './definitions';
 
@@ -26,9 +26,8 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
 
     return async (
         httpEvent: AWSLambdaEvent,
-        lambdaContext: AWSLambdaContext,
-        callback: AWSLambdaCallback
-    ): Promise<void> => {
+        lambdaContext: AWSLambdaContext
+    ): Promise<AWSLambdaResponse> => {
         // Ensure that response happens right after callback
         lambdaContext.callbackWaitsForEmptyEventLoop = false;
 
@@ -58,10 +57,11 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
             };
 
             const {body, ...modifiedResponse} = await config.modifyResponse(response, httpEvent, lambdaContext);
-            callback(null, {
+
+            return {
                 ...modifiedResponse,
                 body: stringify(body)
-            });
+            };
 
         } catch(err) {
             const gromitError = err.isGromitError
@@ -79,10 +79,10 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
             };
 
             const {body, ...modifiedResponse} = await config.modifyResponse(response, httpEvent, lambdaContext);
-            callback(null, {
+            return {
                 ...modifiedResponse,
                 body: stringify(body)
-            });
+            };
         }
     };
 }
