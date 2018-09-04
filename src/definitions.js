@@ -1,8 +1,8 @@
 // @flow
-import type {GraphqlSchema} from 'graphql';
+import type {GraphQLSchema} from 'graphql';
 
 export type InputConfig = {
-    schema: GraphqlSchema,
+    schema: GraphQLSchema,
     rootValue: Object,
     authorizeRequest?: RequestAuthorizer,
     modifyResponse?: ResponseModifier,
@@ -18,7 +18,7 @@ export type ConfigUpdate = {
 };
 
 export type MergedConfig = {
-    schema: GraphqlSchema,
+    schema: GraphQLSchema,
     rootValue: Object,
     authorizeRequest: RequestAuthorizer,
     modifyResponse: ResponseModifier,
@@ -60,7 +60,8 @@ export type ErrorLogger = (err: Object) => void;
 export type AWSLambdaEvent = {
     body: string,
     headers: {
-        Authorization: string
+        Authorization: string,
+        [key: string]: string
     },
     authorizationToken: string
 };
