@@ -36,9 +36,9 @@ jobs:
       # run tests!
       - run: yarn test-all
       - run: git --no-pager diff && test -z "$(git status --porcelain)"
-
-
-
-
-
-
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          context: org-global

@@ -13,9 +13,11 @@ const formatError = (err: Object): Object => {
     };
 };
 
+type ObjMap<T> = { [key: string]: T, __proto__: null };
+
 export default function errorFormatter(
-    result: {data: ?Object, errors: ?Array<GraphQLError>}
-): {data: ?Object, errors: ?Array<Object>} {
+    result: {data?: ObjMap<mixed>, errors?: $ReadOnlyArray<GraphQLError>}
+): {data?: ObjMap<mixed>, errors?: $ReadOnlyArray<GraphQLError>} {
     if(result.errors && result.errors.length > 0) {
         return Object.assign({}, result, {
             errors: result.errors.map((err: GraphQLError): Object  => {
