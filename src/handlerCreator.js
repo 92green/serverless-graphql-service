@@ -1,6 +1,7 @@
 // @flow
 
 import {graphql} from 'graphql';
+import type {GraphQLError} from 'graphql';
 import parseRequestBody from './requestParser';
 import {GromitError} from 'gromit';
 import errorFormatter from './errorFormatter';
@@ -47,8 +48,10 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
 
             const formattedResult = errorFormatter(result);
 
-            if(formattedResult.errors && formattedResult.errors.length > 0) {
-                formattedResult.errors.forEach((err) => config.logErrors(err));
+            if(result.errors && result.errors.length > 0) {
+                result.errors.forEach((err: GraphQLError) => {
+                    config.logErrors(err.originalError || err);
+                });
             }
 
             const response = {
