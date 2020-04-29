@@ -1,6 +1,6 @@
 {
   "name": "@92green/serverless-graphql-service",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Service to handle graphql requests through serverless",
   "main": "lib/index.js",
   "files": [
