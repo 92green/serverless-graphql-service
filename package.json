@@ -6,7 +6,7 @@
   "files": [
     "lib"
   ],
-  "repository": "git@github.com:blueflag/serverless-graphql-service.git",
+  "repository": "git@github.com:92green/serverless-graphql-service.git",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
   },
