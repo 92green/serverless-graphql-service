@@ -1,6 +1,6 @@
 {
   "name": "@92green/serverless-graphql-service",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Service to handle graphql requests through serverless",
   "main": "lib/index.js",
   "files": [
@@ -8,7 +8,7 @@
   ],
   "repository": "git@github.com:blueflag/serverless-graphql-service.git",
   "publishConfig": {
-      "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/"
   },
   "author": "Dan Coates <dan.coates@blueflag.com.au>",
   "license": "MIT",
