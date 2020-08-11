@@ -11,7 +11,7 @@
         }]
     ],
     "plugins": [
-        ["babel-plugin-extract-flow-types", {"outDir": "lib"}]
+        ["babel-plugin-extract-flow-types", {"srcDir": "src", "outDir": "lib"}]
     ],
     "ignore": ["./lib"]
 }
