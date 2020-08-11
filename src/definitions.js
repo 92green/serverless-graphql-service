@@ -1,6 +1,5 @@
 // @flow
 import type {GraphQLSchema} from 'graphql';
-import stringify from 'json-stringify-safe';
 
 export type InputConfig = {
     schema: GraphQLSchema,
