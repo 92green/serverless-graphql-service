@@ -1,0 +1,22 @@
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.18.x]
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '12.x'
+    - name: Set Yarn Version
+      run: yarn policies set-version 1.22.4
+    - name: Yarn Install
+      run: yarn install
+    - name: Test
+      run: yarn test-all
+    - name: Porcelain Check
+      run: git status --porcelain &&  (git diff | cat) && test -z "$(git status --porcelain)"
+
