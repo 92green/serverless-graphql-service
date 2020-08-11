@@ -11,13 +11,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [10.x, 12.x, 14.x]
-
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -25,7 +22,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Set Yarn Version
-      run: yarn policies set-version 1.22.4
+      run: yarn policies set-version 1.12.3
     - name: Yarn Install
       run: yarn install
     - name: Test
