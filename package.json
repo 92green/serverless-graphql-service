@@ -27,7 +27,7 @@
     "babel-preset-blueflag": "^0.6.0",
     "blueflag-test": "^0.23.0",
     "graphql": "^0.11.3",
-    "proto-babel-plugin-extract-flow-types": "git+ssh://git@github.com/blueflag/proto-babel-plugin-extract-flow-types.git#v0.1.1"
+    "babel-plugin-extract-flow-types": "^1.0.1"
   },
   "dependencies": {
     "dataloader": "^1.3.0",
