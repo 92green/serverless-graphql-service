@@ -111,7 +111,7 @@ A hook that will be called with each error in the graphql response.
 __Function Signature__
 
 ```js
-type ErrorLogger = (err: Object) => void;
+type ErrorLogger = (err: Object, errorContext: ErrorContext) => void;
 ```
 
 

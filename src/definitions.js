@@ -1,5 +1,6 @@
 // @flow
 import type {GraphQLSchema} from 'graphql';
+import stringify from 'json-stringify-safe';
 
 export type InputConfig = {
     schema: GraphQLSchema,
@@ -55,7 +56,13 @@ export type RequestHandler = (
     AWSLambdaCallback
 ) => Promise<AWSLambdaResponse>;
 
-export type ErrorLogger = (err: Object) => void;
+export type ErrorLogger = (err: Object, errorContext: ErrorContext) => void;
+
+export type ErrorContext = {
+    query: ?string,
+    variables: ?Object,
+    context: ?Object
+}
 
 export type AWSLambdaEvent = {
     body: string,

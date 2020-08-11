@@ -36,21 +36,25 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
         Object.keys(httpEvent.headers).forEach((key: string) => {
             httpEvent.headers[key.toLowerCase()] = httpEvent.headers[key];
         });
-
+        let query, variables, context;
         try {
             const authorizationResult = await config.authorizeRequest(httpEvent, lambdaContext);
             const requestPayload = parseRequestBody(httpEvent.body);
+            query = requestPayload.query;
+            variables = requestPayload.variables
+            context = await config.buildContext(requestPayload, authorizationResult, httpEvent, lambdaContext);
 
-            const context = await config.buildContext(requestPayload, authorizationResult, httpEvent, lambdaContext);
-
-            const {query, variables} = requestPayload;
             const result = await graphql(schema, query, rootValue, context, variables || {});
 
             const formattedResult = errorFormatter(result);
 
             if(result.errors && result.errors.length > 0) {
                 result.errors.forEach((err: GraphQLError) => {
-                    config.logErrors(err.originalError || err);
+                    config.logErrors(err.originalError || err, {
+                        context,
+                        query,
+                        variables
+                    });
                 });
             }
 
@@ -71,7 +75,11 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
                 ? err
                 : GromitError.wrap(err);
 
-            config.logErrors(gromitError);
+            config.logErrors(gromitError, {
+                context,
+                query,
+                variables
+            });
 
             const response = {
                 ...baseResponse,
