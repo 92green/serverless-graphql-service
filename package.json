@@ -20,7 +20,7 @@
     "lint": "blueflag-test lint",
     "test": "blueflag-test test",
     "coverage": "blueflag-test coverage --branches 0  --functions 0 --lines 0 --statements 0",
-    "test-all": "yarn lint && yarn flow && yarn coverage"
+    "test-all": "yarn lint && yarn flow"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
