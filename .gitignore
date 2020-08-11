@@ -1,4 +1,7 @@
+# Workflows Created Files
 .yarn/
+.yarnrc
+
 lib
 node_modules
 .DS_Store
