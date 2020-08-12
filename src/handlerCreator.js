@@ -41,7 +41,7 @@ export default function handlerCreator(config: MergedConfig): RequestHandler {
             const authorizationResult = await config.authorizeRequest(httpEvent, lambdaContext);
             const requestPayload = parseRequestBody(httpEvent.body);
             query = requestPayload.query;
-            variables = requestPayload.variables
+            variables = requestPayload.variables;
             context = await config.buildContext(requestPayload, authorizationResult, httpEvent, lambdaContext);
 
             const result = await graphql(schema, query, rootValue, context, variables || {});

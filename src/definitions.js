@@ -61,7 +61,7 @@ export type ErrorContext = {
     query: ?string,
     variables: ?Object,
     context: ?Object
-}
+};
 
 export type AWSLambdaEvent = {
     body: string,
