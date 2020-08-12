@@ -55,7 +55,13 @@ export type RequestHandler = (
     AWSLambdaCallback
 ) => Promise<AWSLambdaResponse>;
 
-export type ErrorLogger = (err: Object) => void;
+export type ErrorLogger = (err: Object, errorContext: ErrorContext) => void;
+
+export type ErrorContext = {
+    query: ?string,
+    variables: ?Object,
+    context: ?Object
+};
 
 export type AWSLambdaEvent = {
     body: string,
